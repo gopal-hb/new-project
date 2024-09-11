@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Back TO School - Login</title>
+    <title>Admin - Login</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
     <style>
@@ -28,12 +28,12 @@
 
                                 <div class="pt-4 pb-2">
                                     <h5 class="card-title text-center pb-0 fs-4" style="color: #003049">
-                                        Back TO School - Login
+                                        Admin - Login
                                     </h5>
                                 </div>
 
-                                <form class="row g-3 needs-validation" novalidate>
-
+                                <form class="row g-3 needs-validation" action="{{ route('loginop') }}" method="POST" novalidate>
+                                    @csrf
                                     <div class="col-12">
                                         <label for="youremail" class="form-label">Email <span
                                                 class="text-danger">*</span></label>
@@ -57,22 +57,11 @@
                                             <div class="invalid-feedback">Please enter your password!</div>
                                         </div>
                                     </div>
-
-                                    <div class="col-12">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" title="remember me"
-                                                name="remember" value="true" id="rememberMe">
-                                            <label class="form-check-label" for="rememberMe">Remember me</label>
-                                        </div>
-                                    </div>
                                     <div class="col-12">
                                         <button class="btn w-100" type="submit"
                                             style="background-color: #003049 ; color:#f1f6f7fd">Login</button>
                                     </div>
                                 </form>
-                                {{-- email=keshrigopal31@gmail.com --}}
-                                {{-- password=12121222212 --}}
-                                {{-- remember=true --}}
                             </div>
                         </div>
                     </div>

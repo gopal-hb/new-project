@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\location;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
@@ -13,6 +14,8 @@ class LocationController extends Controller
     public function index()
     {
         //
+        $location=location::where('is_deleted',0)->get();
+        return view('admin.Location',compact('location'));
     }
 
     /**
@@ -29,6 +32,14 @@ class LocationController extends Controller
     public function store(Request $request)
     {
         //
+        $validated = $request->validate([
+            'location' => 'required|max:255',
+        ]);
+        $add = new location();
+        $add->location = $request->location;
+        $add->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -52,7 +63,13 @@ class LocationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'elocation' => 'required|max:255',
+        ]);
+        $edit = location::find($id);
+        $edit->location= $request->elocation;
+        $edit->save();
+        return redirect()->back();
     }
 
     /**
@@ -61,5 +78,9 @@ class LocationController extends Controller
     public function destroy(string $id)
     {
         //
+        $delete =location::find($id);
+        $delete->is_deleted = 1;
+        $delete->save();
+        return redirect()->back();
     }
 }

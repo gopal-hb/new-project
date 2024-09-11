@@ -1,22 +1,21 @@
 @php
-    $act2 = true;
+    $act6 =true;
 @endphp
 @extends('admin.assets.layout')
 
-@section('title', 'Category')
+@section('title', 'Event')
 
 @push('css')
-<!-- Add any additional CSS you need here -->
 @endpush
 
 @section('content')
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Category Manage</h1>
+        <h1>Location Manage</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item active">Category Manage</li>
+                <li class="breadcrumb-item active">Location Manage</li>
             </ol>
         </nav>
     </div>
@@ -27,14 +26,14 @@
                     <div class="card-header" style="background: #003049;">
                         <h4 class="p-0 card-title d-flex align-items-center justify-content-between"
                             style="color:#f6f9ff;">
-                            Category Manage
+                            Location Manage
                             <button class="btn" style="background-color: #fbfcfd; color: #003049;"
-                                data-bs-toggle="modal" data-bs-target="#addcategory">+ ADD
-                                Category</button>
+                                data-bs-toggle="modal" data-bs-target="#addlocation">+ ADD
+                                Location</button>
                         </h4>
                     </div>
                     <div class="card-body mt-5">
-                        <table id="categoryTable">
+                        <table id="LocationTable">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -44,14 +43,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($category as $index => $cate)
+                                @foreach ($event as $index => $Loc)
                                 <tr>
-                                    <td>{{ $cate->id }}</td>
+                                    <td>{{ $Loc->id }}</td>
                                     <td>{{ $index + 1 }}</td>
-                                    <td>{{ $cate->category }}</td>
+                                    <td>{{ $Loc->location }}</td>
                                     <td>
-                                        <button class="btn btn-success btn-sm" onclick="editcategory({{ $cate }})" data-bs-toggle="modal" data-bs-target="#editcategory">Edit</button>
-                                        <form action="{{ route('category.destroy', $cate->id) }}" method="POST" style="display:inline-block;">
+                                        <button class="btn btn-success btn-sm" onclick="editevent({{ $Loc }})" data-bs-toggle="modal" data-bs-target="#editlocation">Edit</button>
+                                        <form action="{{ route('location.destroy', $Loc->id) }}" method="POST" style="display:inline-block;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
@@ -70,17 +69,18 @@
         </div>
     </section>
 </main>
-@include('admin.categorymodal')
+@include('admin.eventmodal')
+
 @endsection
 
 @push('js')
 <script>
-     function editcategory(cate) {
-        $('#categoryedit').attr('action', '/category/' + cate.id);
-        $('#eCategory').val(cate.category);
+     function editevent(Loc) {
+        $('#eventedit').attr('action', '/location/' + Loc.id);
+        $('#elocation').val(Loc.location);
     }
 $(document).ready(function() {
-    $('#categoryTable').DataTable({
+    $('#LocationTable').DataTable({
         "processing": true,
         "paging": true,
         "searching": true,

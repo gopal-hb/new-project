@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\address;
 use Illuminate\Http\Request;
 
 class AddressController extends Controller
@@ -13,6 +14,9 @@ class AddressController extends Controller
     public function index()
     {
         //
+        $address = address::where('is_deleted',0)->get();
+
+        return view('admin.address',compact('address'));
     }
 
     /**
@@ -29,6 +33,13 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         //
+        $validated = $request->validate([
+            'address' => 'required|max:255',
+        ]);
+        $add = new address();
+        $add->address= $request->address;
+        $add->save();
+        return redirect()->back();
     }
 
     /**
@@ -53,6 +64,13 @@ class AddressController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $validated = $request->validate([
+            'eaddress' => 'required|max:255',
+        ]);
+        $edit = address::find($id);
+        $edit->address= $request->eaddress;
+        $edit->save();
+        return redirect()->back();
     }
 
     /**
@@ -61,5 +79,9 @@ class AddressController extends Controller
     public function destroy(string $id)
     {
         //
+        $del = address::find($id);
+        $del->is_deleted = 1;
+        $del->save();
+        return redirect()->back();
     }
 }

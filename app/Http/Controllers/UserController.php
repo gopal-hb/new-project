@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\address;
+use App\Models\category;
+use App\Models\event;
+use App\Models\location;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -32,7 +36,11 @@ class UserController extends Controller
 
     public function dashboard(){
 
-        return view('admin.assets.dashboard');
+        $Location= location::where('is_deleted',0)->count();
+        $Category= category::where('is_deleted',0)->count();
+        $Address= address::where('is_deleted',0)->count();
+        $Events= event::where('is_deleted',0)->count();
+        return view('admin.assets.dashboard',compact('Location','Category','Address','Events'));
 
     }
 }
