@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2024 at 05:52 AM
+-- Generation Time: Sep 12, 2024 at 09:57 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -63,6 +63,14 @@ CREATE TABLE `bookings` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`id`, `event_id`, `name`, `email`, `phone`, `massage`, `num_people`, `status`, `is_deleted`, `created_at`, `updated_at`) VALUES
+(1, 4, 'gopal keshri', 'keshrigopal31@gmail.com', '9409643361', 'dd', 5, 0, 0, '2024-09-12 01:34:18', '2024-09-12 01:34:18'),
+(2, 4, 'gopal keshri', 'gopalhackberrysoftech@gmail.com', '9409643361', 'demo', 5, 1, 0, '2024-09-12 02:02:58', '2024-09-12 02:03:34');
+
 -- --------------------------------------------------------
 
 --
@@ -112,14 +120,14 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `category_id`, `location_id`, `address_id`, `name`, `description`, `date`, `time`, `status`, `is_deleted`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 1, 'ambani wadding', 'big wadding in India', '2024-09-14', '14:01:00', 1, 0, '2024-09-11 14:08:49', '2024-09-11 14:08:49'),
-(2, 1, 2, 2, 'Rohan bhai', 'A clean and customizable admin template built with Laravel 10. Features include responsive design, authentication, CRUD operations, and a scalable architecture—ideal for creating dashboards and control panels.', '2024-09-12', '13:27:00', 1, 0, '2024-09-11 14:26:06', '2024-09-11 14:26:06'),
-(3, 2, 2, 1, 'test', 'big wadding in India', '2024-09-18', '01:30:00', 1, 0, '2024-09-11 14:27:13', '2024-09-11 14:27:13'),
-(4, 1, 2, 1, 'Rohan bhai', 'big wadding in India', '2024-09-10', '01:29:00', 1, 0, '2024-09-11 14:27:46', '2024-09-11 14:27:46'),
-(5, 2, 2, 1, 'test', 'big wadding in India', '2024-09-25', '01:34:00', 1, 0, '2024-09-11 14:29:54', '2024-09-11 14:29:54'),
-(6, 1, 2, 1, 'test', 'big wadding in India', '2024-09-27', '01:34:00', 0, 0, '2024-09-11 14:30:24', '2024-09-11 14:30:24'),
+(1, 1, 2, 1, 'ambani wadding', 'big wadding in India', '2024-09-14', '14:01:00', 1, 1, '2024-09-11 14:08:49', '2024-09-12 00:40:47'),
+(2, 1, 2, 2, 'Rohan bhai', 'edjh', '2024-09-12', '13:27:00', 1, 1, '2024-09-11 14:26:06', '2024-09-12 00:41:25'),
+(3, 2, 2, 1, 'test', 'big wadding in India', '2024-09-18', '01:30:00', 0, 0, '2024-09-11 14:27:13', '2024-09-12 01:09:09'),
+(4, 1, 2, 1, 'Rohan bhai', 'big wadding in India', '2024-09-10', '01:29:00', 0, 0, '2024-09-11 14:27:46', '2024-09-12 01:09:12'),
+(5, 2, 2, 1, 'test', 'big wadding in India', '2024-09-25', '01:34:00', 1, 1, '2024-09-11 14:29:54', '2024-09-12 00:40:45'),
+(6, 1, 2, 1, 'test', 'big wadding in India', '2024-09-27', '01:34:00', 1, 0, '2024-09-11 14:30:24', '2024-09-12 00:47:56'),
 (7, 3, 3, 1, 'test', 'big wadding in India', '2024-09-26', '01:33:00', 1, 0, '2024-09-11 14:31:10', '2024-09-11 14:31:10'),
-(8, 3, 3, 2, 'test 12234', 'big wadding in India', '2024-09-30', '19:00:00', 0, 0, '2024-09-11 14:33:06', '2024-09-11 14:33:06');
+(8, 3, 3, 2, 'test 12234', 'big wadding in India', '2024-09-30', '19:00:00', 1, 0, '2024-09-11 14:33:06', '2024-09-12 00:47:59');
 
 -- --------------------------------------------------------
 
@@ -325,7 +333,7 @@ ALTER TABLE `addresses`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `categories`
