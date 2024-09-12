@@ -2,12 +2,13 @@
     <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #003049">
-                <h5 class="modal-title" style="color: #f6f9ff">Add New location</h5>
+                <h5 class="modal-title" style="color: #f6f9ff">Add New Event</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                     aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form enctype="multipart/form-data" method="POST" action="{{ route('eventop') }}" id="eventadd" novalidate>
+                <form enctype="multipart/form-data" method="POST" action="{{ route('eventop') }}" id="eventadd"
+                    novalidate>
                     @csrf
                     <div class="row mb-3">
                         <div class="col-md-12">
@@ -18,7 +19,8 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-12">
-                            <label for="Description" class="form-label">Description <span class="text-danger">*</span></label>
+                            <label for="Description" class="form-label">Description <span
+                                    class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="Description" id="Description"
                                 placeholder="Description" required>
                         </div>
@@ -29,7 +31,7 @@
                             <select name="Category" id="Category" class="form-select">
                                 <option value="">Select Category</option>
                                 @foreach ($category as $cate)
-                                <option value="{{ $cate->id }}">{{ $cate->category }}</option>
+                                    <option value="{{ $cate->id }}">{{ $cate->category }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -38,7 +40,7 @@
                             <select name="Location" id="Location" class="form-select">
                                 <option value="">Select Location</option>
                                 @foreach ($location as $loc)
-                                <option value="{{ $loc->id }}">{{ $loc->location }}</option>
+                                    <option value="{{ $loc->id }}">{{ $loc->location }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -47,7 +49,7 @@
                             <select name="Address" id="Address" class="form-select">
                                 <option value="">Select Address</option>
                                 @foreach ($address as $add)
-                                <option value="{{ $add->id }}">{{ $add->address }}</option>
+                                    <option value="{{ $add->id }}">{{ $add->address }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -55,18 +57,20 @@
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <label for="date" class="form-label">date <span class="text-danger">*</span></label>
-                            <input type="date" class="form-control" name="date" id="date"
-                                placeholder="date" required>
+                            <input type="date" class="form-control" name="date" id="date" placeholder="date"
+                                required>
                         </div>
                         <div class="col-md-4">
                             <label for="time" class="form-label">time <span class="text-danger">*</span></label>
-                            <input type="time" class="form-control" name="time" id="time"
-                                placeholder="time" required>
+                            <input type="time" class="form-control" name="time" id="time" placeholder="time"
+                                required>
                         </div>
                         <div class="col-md-4">
-                            <label for="status" class="form-label">status <span class="text-danger">*</span></label><br>
+                            <label for="status" class="form-label">status <span
+                                    class="text-danger">*</span></label><br>
                             <input type="radio" name="status" id="active" value="0" required> active
-                            <input type="radio" name="status" id="Not_active" value="1" checked required> Not active
+                            <input type="radio" name="status" id="Not_active" value="1" checked required> Not
+                            active
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -84,3 +88,97 @@
     </div>
 </div>
 
+<div class="modal fade" id="editevent" tabindex="-1" data-bs-backdrop="false">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #003049">
+                <h5 class="modal-title" style="color: #f6f9ff">Edit Event</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form enctype="multipart/form-data" method="POST" action="{{ route('editeventop') }}"
+                    id="eventedit" novalidate>
+                    @csrf
+                    <input type="hidden" name="eventid" id="eventid" value="">
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label for="ename" class="form-label">name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="ename" id="ename"
+                                placeholder="event name" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label for="eDescription" class="form-label">Description <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="eDescription" id="eDescription"
+                                placeholder="Description" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="eCategory" class="form-label">Category <span
+                                    class="text-danger">*</span></label>
+                            <select name="eCategory" id="eCategory" class="form-select">
+                                <option value="">Select Category</option>
+                                @foreach ($category as $cate)
+                                    <option value="{{ $cate->id }}">{{ $cate->category }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="eLocation" class="form-label">Location <span
+                                    class="text-danger">*</span></label>
+                            <select name="eLocation" id="eLocation" class="form-select">
+                                <option value="">Select Location</option>
+                                @foreach ($location as $loc)
+                                    <option value="{{ $loc->id }}">{{ $loc->location }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="eAddress" class="form-label">Address <span
+                                    class="text-danger">*</span></label>
+                            <select name="eAddress" id="eAddress" class="form-select">
+                                <option value="">Select Address</option>
+                                @foreach ($address as $add)
+                                    <option value="{{ $add->id }}">{{ $add->address }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="edate" class="form-label">date <span class="text-danger">*</span></label>
+                            <input type="date" class="form-control" name="edate" id="edate"
+                                placeholder="date" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="etime" class="form-label">time <span class="text-danger">*</span></label>
+                            <input type="time" class="form-control" name="etime" id="etime"
+                                placeholder="time" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="estatus" class="form-label">status <span
+                                    class="text-danger">*</span></label><br>
+                            <input type="radio" name="estatus" id="Eactive" value="0" required> active
+                            <input type="radio" name="estatus" id="ENot_active" value="1" required>
+                            Not
+                            active
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-6 text-end">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" style="background-color: #003049"></div>
+        </div>
+    </div>
+</div>

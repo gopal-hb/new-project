@@ -3,7 +3,9 @@
     <div class="d-flex align-items-center justify-content-between">
         <a href="{{ route('admin.dashboard') }}">
             <img src="{{ url('/') }}/assets/img/logo.png" width="36px" alt="">
-            <span id="title-word">admin</span>
+            <span id="title-word">
+                admin
+            </span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div>
@@ -13,7 +15,7 @@
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="javascript:void(0);"
                     data-bs-toggle="dropdown">
                     <img src="{{ url('/') }}/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name}}</span>
+                    <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }}</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li>
@@ -64,7 +66,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ isset($act5) ? '' : 'collapsed' }}" href="{{ route('event.index') }}">
+            <a class="nav-link {{ isset($act6) ? '' : 'collapsed' }}" href="{{ route('book.index') }}">
                 <i class="bi bi-sliders"></i>
                 <span>Booking</span>
             </a>

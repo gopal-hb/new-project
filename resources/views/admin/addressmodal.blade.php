@@ -2,12 +2,13 @@
     <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #003049">
-                <h5 class="modal-title" style="color: #f6f9ff">Add New Category</h5>
+                <h5 class="modal-title" style="color: #f6f9ff">Add New Address</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                     aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form enctype="multipart/form-data" method="POST" action="{{ route('address.store') }}" id="addressadd" novalidate>
+                <form enctype="multipart/form-data" method="POST" action="{{ route('address.store') }}" id="addressadd"
+                    novalidate>
                     @csrf
                     <div class="row mb-3">
                         <div class="col-md-12">
@@ -35,7 +36,7 @@
     <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #003049">
-                <h5 class="modal-title" style="color: #f6f9ff">edit Category</h5>
+                <h5 class="modal-title" style="color: #f6f9ff">edit Address</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                     aria-label="Close"></button>
             </div>

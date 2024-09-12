@@ -19,8 +19,7 @@ class EventController extends Controller
             ->join('categories', 'events.category_id', '=', 'categories.id')
             ->join('locations', 'events.location_id', '=', 'locations.id')
             ->join('addresses', 'events.address_id', '=', 'addresses.id')
-            ->select('categories.category', 'locations.location', 'addresses.address', 'events.id', 'events.time', 'events.date', 'events.description', 'events.status', 'events.name')
-            ->orderByDesc('events.id')
+            ->select('categories.category', 'categories.id as categoryid', 'locations.location', 'locations.id as locationid', 'addresses.id as addressid', 'addresses.address', 'events.id', 'events.time', 'events.date', 'events.description', 'events.status', 'events.name')
             ->where('events.is_deleted', 0)->get();
         $category = category::where('is_deleted', 0)->get();
         $location = location::where('is_deleted', 0)->get();
@@ -53,6 +52,50 @@ class EventController extends Controller
         $event->date = $request->date;
         $event->time = $request->time;
         $event->status = $status;
+        $event->save();
+        return redirect()->back();
+    }
+
+    public function editeventop(Request $request)
+    {
+        $vaildate = $request->validate(
+            [
+                'ename' => 'required',
+                'eDescription' => 'required',
+                'eCategory' => 'required',
+                'eLocation' => 'required',
+                'eAddress' => 'required',
+                'edate' => 'required',
+                'etime' => 'required',
+                'estatus' => 'required',
+            ]
+        );
+
+        $event = event::find($request->eventid);
+        $event->name = $request->ename;
+        $event->description = $request->eDescription;
+        $event->category_id = $request->eCategory;
+        $event->location_id = $request->eLocation;
+        $event->address_id = $request->eAddress;
+        $event->date = $request->edate;
+        $event->time = $request->etime;
+        $event->status = $request->estatus;
+        $event->save();
+        return redirect()->back();
+    }
+    public function eventstatus(Request $request)
+    {
+        $statusnew = $request->status == 0 ? 1 : 0;
+        $event = event::find($request->id);
+        $event->status = $statusnew;
+        $event->save();
+        return redirect()->back();
+    }
+
+    public function eventdelete(Request $request)
+    {
+        $event = event::find($request->id);
+        $event->is_deleted = 1;
         $event->save();
         return redirect()->back();
     }

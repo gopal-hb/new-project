@@ -19,14 +19,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('login', [UserController::class, 'login'])->name('login');
+Route::post('loginop', [UserController::class, 'loginop'])->name('loginop');
 
-Route::get('login',[UserController::class,'login'])->name('login');
-Route::post('loginop',[UserController::class,'loginop'])->name('loginop');
-
-Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::get('dashboard', 'dashboard')->name('admin.dashboard');
         Route::get('logout', 'logout')->name('logout');
@@ -39,16 +35,21 @@ Route::middleware('auth')->group(function(){
     Route::controller(EventController::class)->group(function () {
         Route::get('event', 'event')->name('event.index');
         Route::post('eventop', 'eventop')->name('eventop');
-        Route::post('eventshow', 'eventshow');
-        Route::post('editevent','editevent');
-        Route::post('editeventop', 'editeventop');
+        Route::post('editeventop', 'editeventop')->name('editeventop');
+        Route::post('eventstatus', 'eventstatus')->name('eventstatus');
+        Route::post('eventdelete', 'eventdelete')->name('eventdelete');
     });
 
     Route::controller(BookingController::class)->group(function () {
-        Route::get('show', 'show')->name('book.show');
+        Route::get('show', 'show')->name('book.index');
     });
 });
 
+Route::controller(BookingController::class)->group(function () {
+    Route::get('/', 'frontshow')->name('frontshow');
+    Route::post('booknow', 'booknow')->name('booknow');
+    Route::get('/confirm/{id}', 'confirm');
+});
 
 
 //
